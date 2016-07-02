@@ -1,6 +1,6 @@
 import unittest
-execfile('/Users/MichaelLo/projects/python_airport/airport.py')
-execfile('/Users/MichaelLo/projects/python_airport/plane.py')
+execfile('/Users/timchipperfield/projects/python_airport/airport.py')
+execfile('/Users/timchipperfield/projects/python_airport/plane.py')
 
 
 def fun(x):
@@ -24,6 +24,13 @@ class MyTest(unittest.TestCase):
         airport = Airport()
         plane.land(airport)
         self.assertEqual(airport.plane_roster, [plane], "the plane is in the airport")
-
-
+    def test_plane_takes_off(self):
+        plane = Plane()
+        airport = Airport()
+        airport.plane_roster = []
+        plane.land(airport)
+        plane.takeoff(airport)
+        print airport.plane_roster
+        self.assertEqual(airport.plane_roster, [], "no planes in airport")
+        self.assertEqual(plane.location, "in air", "the plane is in the air")
 unittest.main()
